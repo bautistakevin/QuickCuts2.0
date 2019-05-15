@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "UploadPicture";
+}
+
+<h1>Upload Picture</h1>
+
+<form asp-action="SavePicture" asp-controller="Pictures" method="post" enctype="multipart/form-data">
+    <input name="imageName" />
+    <br />
+    <input type="file" name="picture" />
+    <br />
+    <input type="submit" />
+</form>
+

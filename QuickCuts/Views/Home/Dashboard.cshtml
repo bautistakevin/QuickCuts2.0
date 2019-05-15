@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model QuickCuts.Models.UserViewModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+ 
+<div class="container">
+    <div class="row">
+        <div class="col-sm" style="max-width:200px;max-height:auto; padding-bottom:3em;">
+            <img class="img-fluid float-left" src="~/images/Professional headshot.jpg" />
+        </div>
+        <div class="col-sm">
+            <h1>@User.Identity.Name</h1>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <h4 class="display-4">your favorite barbers</h4>
+
+    <div class="card-deck" style="padding-bottom:3em;">
+        
+
+        @foreach (BarberViewModel barber in ViewBag.BarberViewModel)
+        {
+            <div class="card col-4">
+                <img class="card-img-top " src="~/images/sampleBarber@(barber.Barber.BarberId).jpg" alt="" />
+                <div class="card-body">
+                    <h5 class="card-title text-monospace font-weight-bold">@barber.Barber.FirstName @barber.Barber.LastName</h5>
+                    <p class="card-text">@barber.Barber.Address , @barber.Barber.Zip</p>
+                    <ul class="list-group list-group-flush">
+                        @foreach (Services services in barber.Services)
+                        {
+                            <li class="list-group-item">@services.Title.ToString()</li>
+                        }
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="@Url.Action("Profile", "Home", new { id = barber.Barber.BarberId })" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">View Profile</a>
+                </div>
+            </div>
+        }
+    </div>
+    <h4 class="display-4">your ratings</h4>
+    <div class="card-deck">
+        @foreach (Ratings ratings in Model.Ratings)
+        {
+            <div class="card col-4">
+                <div class="card-body">
+                    <h5 class="card-title">rating for @ratings.Barber.FirstName </h5>
+                    <p class="card-text">@ratings.RatingNumber/5</p>
+                    <p class="card-text"> @ratings.Comment </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="@Url.Action("Profile", "Home", new { id = ratings.Barber.BarberId })" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">View Profile</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

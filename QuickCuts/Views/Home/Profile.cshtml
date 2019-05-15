@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model QuickCuts.Models.BarberViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+    <div class="container-fluid">
+        
+
+      
+        
+
+        <div class="row">
+            <div class="col-4">
+                <img class="card-img-top col-12" style="max-height:500px;width:auto;padding:0;" src="~/images/sampleBarber@(@Model.Barber.BarberId).jpg" alt="" />
+                <h1>@Model.Barber.FirstName @Model.Barber.LastName </h1>
+                <p>@Model.Barber.PhoneNumber</p><br />
+                <p>@Model.Barber.Address</p><br />
+                <p>@Model.Barber.Zip</p><br />
+                <h6>Business hours</h6>
+                <p>@Model.Barber.BusinessHours</p><br />
+                <h6>Policy Info</h6><br />
+                <p>@Model.Barber.PolicyInfo</p>
+            </div>
+            <table class="table col-8" style="padding-top:5em;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Services services in Model.Services)
+                    {
+                        <tr>
+                            <td>@services.Title</td>
+                            <td>@services.Description</td>
+                            <td>$@services.Cost</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+

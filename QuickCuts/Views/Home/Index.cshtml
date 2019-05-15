@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+    <div class="container-fluid">
+
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <div class="text-center">
+                <h1 class="display-3">Welcome to QuickCuts</h1>
+                <h2 class="display-4">find the best barbers around your area.</h2>
+            </div>
+        }
+        else
+        {
+            <div class="text-center">
+                <div class="row">
+                    <h1 class="display-4 col-12 ">Welcome back, @ViewBag.name</h1>
+                    <h4 class="col-12">Take a look at some of the barbers around, or take a look at your dashboard.</h4>
+                </div>
+            </div>
+        }
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for barbers nearby" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <h4 class="display-4">Check out the barbers in the spot light</h4>
+                <div class="card-deck">
+                    
+
+                    @foreach (BarberViewModel barber in ViewBag.BarberViewModel)
+                    {
+                        <div class="card col-4">
+                            <img class="card-img-top " src="~/images/sampleBarber@(barber.Barber.BarberId).jpg" alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title text-monospace font-weight-bold">@barber.Barber.FirstName @barber.Barber.LastName</h5>
+                                <p class="card-text">@barber.Barber.Address , @barber.Barber.Zip</p>
+                                <ul class="list-group list-group-flush">
+                                    @foreach (Services services in barber.Services)
+                                    {
+                                        <li class="list-group-item">@services.Title.ToString()</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="@Url.Action("Profile", "Home", new { id = barber.Barber.BarberId })" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">View Profile</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        
+    </div>

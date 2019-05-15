@@ -1,0 +1,16 @@
+﻿@model IEnumerable<QuickCuts.Models.Pictures>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pictures Index</h1>
+@foreach (Pictures i in Model)
+{
+    <div class="card">        
+        <div class="card-body">
+            <img src="@Url.Action("GetImage", "Image",new { i.OwnerId })" />
+        </div>
+    </div>
+    <br />
+}

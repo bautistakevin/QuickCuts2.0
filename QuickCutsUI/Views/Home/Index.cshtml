@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-3">Welcome to QuickCut</h1>
+    <h2 class="display-4">find the best barbers around your area.</h2>
+</div>
+
+<div class="text-center">
+    <p></p>
+</div>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search for barbers nearby" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </div>
+</div>
+
+<div class="text-center">
+    <h4 class="display-4">Check out the barbers in the spot light</h4>
+</div>
+
+@*
+<div class="card-deck">
+    @foreach (BarberViewModel barber in ViewBag.BarberServices)
+    {
+        <div class="card">
+            <img class="card-img-top" src="~/img/sampleBarber.jpg" alt="barber" />
+            <div class="card-body">
+                <h5 class="card-title">@barber.barber.FirstName @barber.barber.LastName</h5>
+                <p class="card-text">@barber.barber.BarberAddress</p>
+                @foreach (Services services in barber.services)
+                {
+                    <p class="card-text"> @services.ServiceTitle.ToString() </p>
+                }
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    }
+</div>
+*@
